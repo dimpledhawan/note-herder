@@ -8,7 +8,7 @@ class Main extends React.Component {
   constructor(){
       super();
       this.state = {
-          note: {
+          noteTarget: {
             title: 'Title your note',
             body: '',
           }
@@ -16,12 +16,12 @@ class Main extends React.Component {
   }
   
   myCallback = (data) => {
-      let tempNote = Object.assign({}, this.state.note);
-      tempNote.title = data.title;
-      tempNote.body = data.body;
+      let temp = Object.assign({}, this.state.noteTarget);
+      temp.title = data.title;
+      temp.body = data.body;
 
       this.setState({
-          note: tempNote,
+        noteTarget: temp,
       })
   }
   
@@ -30,7 +30,7 @@ class Main extends React.Component {
           <div className = "Main" style = {style}>
               <Sidebar />
               <NoteList callBackParent = {this.myCallback}/>
-              <NoteForm note = {this.state.note}/>
+              <NoteForm note = {this.state.noteTarget}/>
           </div>
       );
   }
