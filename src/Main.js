@@ -15,14 +15,13 @@ class Main extends React.Component {
       }
   }
   
-  myCallback = (data) => {
-      let temp = Object.assign({}, this.state.noteTarget);
-      temp.title = data.title;
-      temp.body = data.body;
-
-      this.setState({
-        noteTarget: temp,
-      })
+  myCallback = (prop) => {
+    this.setState({
+        noteTarget: {
+            title: prop.title,
+            body: prop.body
+        }
+    })
   }
   
   render(){
