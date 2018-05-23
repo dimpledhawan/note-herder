@@ -4,6 +4,8 @@ import quill from './quill.svg'
 import newIcon from './new.png'
 import newHover from './new-hover.png'
 
+import './Sidebar.css'
+
 const Sidebar = () => {
   return (
     <div className="Sidebar" style={styles.sidebar} >
