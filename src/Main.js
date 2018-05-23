@@ -5,36 +5,63 @@ import NoteList from './NoteList'
 import NoteForm from './NoteForm'
 
 class Main extends React.Component {
-  constructor(){
-      super();
-      this.state = {
-          noteTarget: {
-            title: 'Title your note',
-            body: '',
-          }
-      }
+  constructor() {
+    super()
+    this.state = {
+      currentNote: this.blankNote(),
+      notes: [],
+    }
   }
-  
-  myCallback = (prop) => {
-    this.setState({
-        noteTarget: {
-            title: prop.title,
-            body: prop.body
-        }
-    })
+
+  blankNote = () => {
+    return {
+      id: null,
+      title: '',
+      body: '',
+    }
   }
-  
-  render(){
-      return(
-          <div className = "Main" style = {style}>
-              <Sidebar />
-              <NoteList callBackParent = {this.myCallback}/>
-              <NoteForm note = {this.state.noteTarget}/>
-          </div>
-      );
+
+  setCurrentNote = (note) => {
+    this.setState({ currentNote: note })
   }
- 
-};
+
+  resetCurrentNote = () => {
+    this.setCurrentNote(this.blankNote())
+  }
+
+  saveNote = (note) => {
+    const notes = [...this.state.notes]
+
+    if (!note.id) {
+      // new note
+      note.id = Date.now()
+      notes.push(note)
+    } else {
+      // existing note
+      const i = notes.findIndex(currentNote => currentNote.id === note.id)
+      notes[i] = note
+    }
+
+    this.setState({ notes })
+    this.setCurrentNote(note)
+  }
+
+  render() {
+    return (
+      <div className="Main" style={style}>
+        <Sidebar resetCurrentNote={this.resetCurrentNote} />
+        <NoteList
+          notes={this.state.notes}
+          setCurrentNote={this.setCurrentNote}
+        />
+        <NoteForm
+          currentNote={this.state.currentNote}
+          saveNote={this.saveNote}
+        />
+      </div>
+    )
+  }
+}
 
 const style = {
   display: 'flex',
