@@ -6,30 +6,13 @@ import newHover from './new-hover.png'
 
 const Sidebar = () => {
   return (
-    <div
-      className="Sidebar"
-      style={styles.sidebar}
-    >
-      <div
-        className="logo"
-        style={styles.logo}
-      >
-        <img
-          src={quill}
-          alt="Noteherder"
-          style={styles.logoImg}
-        />
+    <div className="Sidebar" style={styles.sidebar} >
+      <div className="logo" style={styles.logo} >
+        <img src={quill} alt="Noteherder" style={styles.logoImg} />
       </div>
-
-      <a href="/notes">
-        <img
-          src={newHover}
-          alt="New note"
-        />
-        <img
-          src={newIcon}
-          alt="New note"
-        />
+      <a className="new-note" href="/notes">
+        <img src={newHover} alt="New note" />
+        <img className="outline" src={newIcon} alt="New note" />
       </a>
 
       <div className="SignOut">
@@ -58,7 +41,23 @@ const styles = {
   logoImg: {
     width: '3rem',
     paddingLeft: '0.4rem',
+  },
+  newNote: {
+    marginTop: '2rem',
+    position: 'relative',
+    width: '40px'
   }
 }
+
+// .Sidebar .SignOut {
+//   position: absolute;
+//   bottom: 1rem;
+// }
+// .Sidebar .SignOut button {
+//   outline: none;
+// }
+// .Sidebar .SignOut button i.fa {
+//   font-size: 2rem;
+// }
 
 export default Sidebar
