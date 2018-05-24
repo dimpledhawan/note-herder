@@ -35,11 +35,9 @@ class Main extends React.Component {
     const notes = [...this.state.notes]
 
     if (!note.id) {
-      // new note
       note.id = Date.now()
       notes.push(note)
     } else {
-      // existing note
       const i = notes.findIndex(currentNote => currentNote.id === note.id)
       notes[i] = note
     }
@@ -47,6 +45,15 @@ class Main extends React.Component {
     this.setState({ notes })
     this.setCurrentNote(note)
   }
+
+  removeNote = (note) => {
+    const notes = [...this.state.notes]
+    const i = notes.findIndex(currentNote => currentNote.id === note.id);
+    notes.splice(i,1)
+    this.setState({notes})
+    this.setCurrentNote(this.blankNote())
+  }
+
 
   render() {
     return (
@@ -59,6 +66,7 @@ class Main extends React.Component {
         <NoteForm
           currentNote={this.state.currentNote}
           saveNote={this.saveNote}
+          removeNote={this.removeNote}
         />
       </div>
     )

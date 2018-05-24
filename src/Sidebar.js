@@ -6,13 +6,16 @@ import newHover from './new-hover.png'
 
 import './Sidebar.css'
 
-const Sidebar = () => {
+const Sidebar = ({ resetCurrentNote }) => {
   return (
     <div className="Sidebar" style={styles.sidebar} >
       <div className="logo" style={styles.logo} >
         <img src={quill} alt="Noteherder" style={styles.logoImg} />
       </div>
-      <a className="new-note" href="/notes">
+      <a className="new-note" href="/notes" onClick={(ev) => {
+          ev.preventDefault()
+          resetCurrentNote()
+        }}>
         <img src={newHover} alt="New note" />
         <img className="outline" src={newIcon} alt="New note" />
       </a>
@@ -50,16 +53,5 @@ const styles = {
     width: '40px'
   }
 }
-
-// .Sidebar .SignOut {
-//   position: absolute;
-//   bottom: 1rem;
-// }
-// .Sidebar .SignOut button {
-//   outline: none;
-// }
-// .Sidebar .SignOut button i.fa {
-//   font-size: 2rem;
-// }
 
 export default Sidebar
