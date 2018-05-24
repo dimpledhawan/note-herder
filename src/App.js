@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import './App.css'
+import { auth } from './firebase'
 import Main from './Main'
 import SignIn from './SignIn'
 
@@ -19,6 +20,14 @@ class App extends Component {
 
   signOut = () => {
     this.setState({ uid: null })
+  }
+
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      if(user) {
+        this.setState({})
+      }
+    })
   }
 
   render() {

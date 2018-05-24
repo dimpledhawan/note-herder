@@ -70,7 +70,7 @@ class Main extends React.Component {
   render() {
     return (
       <div className="Main" style={style}>
-        <Sidebar 
+        <Sidebar
           resetCurrentNote={this.resetCurrentNote}
           signOut={this.props.signOut}
         />
