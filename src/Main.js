@@ -1,11 +1,9 @@
 import React from 'react'
 
+import base from './firebase'
 import Sidebar from './Sidebar'
 import NoteList from './NoteList'
 import NoteForm from './NoteForm'
-import base from './firebase.js'
-
-import './Main.css'
 
 class Main extends React.Component {
   constructor() {
@@ -14,6 +12,14 @@ class Main extends React.Component {
       currentNote: this.blankNote(),
       notes: [],
     }
+  }
+
+  componentWillMount() {
+    base.syncState('notes', {
+      context: this,
+      state: 'notes',
+      asArray: true,
+    })
   }
 
   blankNote = () => {
@@ -36,54 +42,38 @@ class Main extends React.Component {
     const notes = [...this.state.notes]
 
     if (!note.id) {
+      // new note
       note.id = Date.now()
       notes.push(note)
     } else {
+      // existing note
       const i = notes.findIndex(currentNote => currentNote.id === note.id)
       notes[i] = note
     }
 
     this.setState({ notes })
     this.setCurrentNote(note)
-  }
+}
 
-  removeNote = (note) => {
+  removeCurrentNote = () => {
     const notes = [...this.state.notes]
-    const i = notes.findIndex(currentNote => currentNote.id === note.id);
-    notes.splice(i,1)
-    this.setState({notes})
-    this.setCurrentNote(this.blankNote())
-  }
 
-  componentWillMount(){
-    localStorage.getItem('notes') && this.setState({
-        notes: JSON.parse(localStorage.getItem('notes'))
-    })
-  }
+    const i = notes.findIndex(note => note.id === this.state.currentNote.id)
+    if (i > -1) {
+      notes.splice(i, 1)
+      this.setState({ notes })
+    }
 
-    // componentWillMount(){
-    //   base.syncState('Notes', {
-    //     context: this,
-    //     state: 'notes',
-    //   })
-    // }
-
-    // componentDidMount(){
-    //   base.syncState('Notes', {
-    //     context: this,
-    //     state: 'notes',
-    //     asArray: true
-    //   });
-    // }
-
-  componentWillUpdate(nextProps, nextState){
-    localStorage.setItem('notes', JSON.stringify(nextState.notes))
+    this.resetCurrentNote()
   }
 
   render() {
     return (
       <div className="Main" style={style}>
-        <Sidebar resetCurrentNote={this.resetCurrentNote} />
+        <Sidebar 
+          resetCurrentNote={this.resetCurrentNote}
+          signOut={this.props.signOut}
+        />
         <NoteList
           notes={this.state.notes}
           setCurrentNote={this.setCurrentNote}
@@ -91,7 +81,7 @@ class Main extends React.Component {
         <NoteForm
           currentNote={this.state.currentNote}
           saveNote={this.saveNote}
-          removeNote={this.removeNote}
+          removeCurrentNote={this.removeCurrentNote}
         />
       </div>
     )

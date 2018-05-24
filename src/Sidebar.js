@@ -6,7 +6,7 @@ import newHover from './new-hover.png'
 
 import './Sidebar.css'
 
-const Sidebar = ({ resetCurrentNote }) => {
+const Sidebar = ({ resetCurrentNote, signOut }) => {
   return (
     <div className="Sidebar" style={styles.sidebar} >
       <div className="logo" style={styles.logo} >
@@ -20,9 +20,9 @@ const Sidebar = ({ resetCurrentNote }) => {
         <img className="outline" src={newIcon} alt="New note" />
       </a>
 
-      <div className="SignOut">
+      <div className="SignOut" onClick={signOut}>
         <button>
-          <i className="fa fa-sign-out"></i>
+          <i className="fas fa-sign-out-alt" title="sign out"></i>
         </button>
       </div>
     </div>
