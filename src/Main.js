@@ -3,6 +3,7 @@ import React from 'react'
 import Sidebar from './Sidebar'
 import NoteList from './NoteList'
 import NoteForm from './NoteForm'
+import base from './firebase.js'
 
 import './Main.css'
 
@@ -59,6 +60,21 @@ class Main extends React.Component {
         notes: JSON.parse(localStorage.getItem('notes'))
     })
   }
+
+    // componentWillMount(){
+    //   base.syncState('Notes', {
+    //     context: this,
+    //     state: 'notes',
+    //   })
+    // }
+
+    // componentDidMount(){
+    //   base.syncState('Notes', {
+    //     context: this,
+    //     state: 'notes',
+    //     asArray: true
+    //   });
+    // }
 
   componentWillUpdate(nextProps, nextState){
     localStorage.setItem('notes', JSON.stringify(nextState.notes))

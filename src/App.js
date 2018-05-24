@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import './App.css'
 import Main from './Main'
+// import { firebase } from './firebase'
 
 class App extends Component {
   render() {

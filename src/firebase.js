@@ -1,13 +1,16 @@
-import firebase from "firebase"
+import Rebase from 're-base';
+import firebase from 'firebase/app';
+import database from 'firebase/database';
 
-var config = {
+const app = firebase.initializeApp({
     apiKey: "AIzaSyBewl4eRmnV_Ko18_BZNhJIKnDJWdqBIvc",
     authDomain: "note-herder.firebaseapp.com",
     databaseURL: "https://note-herder.firebaseio.com",
     projectId: "note-herder",
     storageBucket: "note-herder.appspot.com",
     messagingSenderId: "294646778492"
-  };
-  firebase.initializeApp(config);
+  });
 
-  export default firebase
+  const db = firebase.database(app);
+  
+  export default Rebase.createClass(db);
