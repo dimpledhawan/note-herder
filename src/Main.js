@@ -54,6 +54,15 @@ class Main extends React.Component {
     this.setCurrentNote(this.blankNote())
   }
 
+  componentWillMount(){
+    localStorage.getItem('notes') && this.setState({
+        notes: JSON.parse(localStorage.getItem('notes'))
+    })
+  }
+
+  componentWillUpdate(nextProps, nextState){
+    localStorage.setItem('notes', JSON.stringify(nextState.notes))
+  }
 
   render() {
     return (
