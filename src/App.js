@@ -8,10 +8,24 @@ import SignIn from './SignIn'
 class App extends Component {
   state = {
     uid: null,
+    user: null
   }
 
-  handleAuth = () => {
-    this.setState({ uid: 'dimple' })
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.handleAuth(user)
+        this.setState(() => ({ user }))
+      } else {
+        this.signOut()
+        this.setState(() => ({ user: null }))
+      }
+      // console.log(this.state)
+    })
+  }
+
+  handleAuth = (user) => {
+    this.setState({ uid: user.uid })
   }
 
   signedIn = () => {
@@ -20,19 +34,13 @@ class App extends Component {
 
   signOut = () => {
     this.setState({ uid: null })
-  }
-
-  componentDidMount() {
-    auth.onAuthStateChanged(user => {
-      if(user) {
-        this.setState({})
-      }
-    })
+    auth.signOut()
   }
 
   render() {
     return (
       <div className="App">
+
         {
           this.signedIn()
             ? <Main signOut={this.signOut} />
