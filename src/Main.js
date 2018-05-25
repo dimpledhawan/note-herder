@@ -15,11 +15,11 @@ class Main extends React.Component {
   }
 
   componentWillMount() {
-    base.syncState('notes', {
+    base.syncState(this.props.uid, {
       context: this,
       state: 'notes',
       asArray: true,
-    })
+    });
   }
 
   blankNote = () => {
@@ -42,11 +42,9 @@ class Main extends React.Component {
     const notes = [...this.state.notes]
 
     if (!note.id) {
-      // new note
       note.id = Date.now()
       notes.push(note)
     } else {
-      // existing note
       const i = notes.findIndex(currentNote => currentNote.id === note.id)
       notes[i] = note
     }
