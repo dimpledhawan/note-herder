@@ -50,6 +50,10 @@
   background-color: #444;
   color: white;
 }
+.SignIn button.github i.fa {
+  font-size: 3rem;
+  margin-right: 0.5rem;
+}
 .SignIn button.github svg {
   font-size: 3rem;
   margin-right: 0.5rem;
@@ -59,6 +63,13 @@
   color: #666;
 }
 
+.Main {
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
 .Header {
   background-color: #fff;
   height: 80px;
