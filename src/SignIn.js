@@ -2,6 +2,7 @@ import React from 'react'
 
 import './SignIn.css'
 import googleLogo from './google.svg'
+import quill from './quill.svg'
 import { auth, githubProvider, googleProvider } from './firebase'
 
 const SignIn = () => {
@@ -12,7 +13,7 @@ const SignIn = () => {
   return (
     <div className="SignIn">
       <header className="Header">
-        <img src="media/quill.svg" alt="" />
+        <img src={quill} alt="" />
         <span className="title">Noteherder</span>
       </header>
       <main>
