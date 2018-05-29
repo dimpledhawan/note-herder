@@ -1,7 +1,7 @@
 .SignIn {
   display: flex;
   flex-direction: column;
-  background: url(desk2.jpg);
+  background: url(desk1.jpg);
   background-size: cover;
   height: 100vh;
 }
