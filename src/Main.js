@@ -15,11 +15,11 @@ class Main extends React.Component {
   }
 
   componentWillMount() {
-    base.syncState(this.props.uid, {
+    base.syncState(`notes/${this.props.uid}`, {
       context: this,
       state: 'notes',
       asArray: true,
-    });
+    })
   }
 
   blankNote = () => {
@@ -55,7 +55,6 @@ class Main extends React.Component {
 
   removeCurrentNote = () => {
     const notes = [...this.state.notes]
-
     const i = notes.findIndex(note => note.id === this.state.currentNote.id)
     if (i > -1) {
       notes.splice(i, 1)
