@@ -12,7 +12,7 @@ const Sidebar = ({ resetCurrentNote, signOut }) => {
       <div className={css(styles.logo)}>
         <img
           src={quill}
-          alt="Noteherder"
+          alt="Notetaker"
           className={css(styles.logoImg)}
         />
       </div>
