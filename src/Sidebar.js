@@ -2,7 +2,6 @@ import React from 'react'
 import { StyleSheet, css } from 'aphrodite'
 import { Link } from 'react-router-dom'
 
-import './Sidebar.css'
 import quill from './quill.svg'
 import newIcon from './new.png'
 import newHover from './new-hover.png'
@@ -13,7 +12,7 @@ const Sidebar = ({ signOut }) => {
       <div className={css(styles.logo)}>
         <img
           src={quill}
-          alt="Notetaker"
+          alt="Noteherder"
           className={css(styles.logoImg)}
         />
       </div>
