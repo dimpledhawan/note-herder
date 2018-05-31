@@ -1,7 +1,7 @@
 {
   "name": "noteherder",
   "version": "0.1.0",
-  "homepage": "https://dimpledhawan.github.io/note-herder/",
+  "homepage": "https://dimpledhawan.github.io/note-taker/",
   "private": true,
   "dependencies": {
     "aphrodite": "^2.2.1",
